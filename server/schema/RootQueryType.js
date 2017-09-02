@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
+import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLID, GraphQLNonNull, GraphQLInt } from 'graphql'
 import RestaurantType from './RestaurantType'
 import ProductType from './ProductType'
 import UserType from './UserType'
@@ -63,6 +63,13 @@ const RootQuery = new GraphQLObjectType({
 					return acc
 				}, [])
 				return preOrder
+			}
+		},
+		productLikes: {
+			type: GraphQLInt,
+			args: { id: { type: GraphQLID } },
+			resolve(_, { id }) {
+				return Product.findById(id).then(product => (product.likes ? product.likes.length : 0))
 			}
 		}
 		/*order: {

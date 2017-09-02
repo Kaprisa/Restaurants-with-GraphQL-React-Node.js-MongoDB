@@ -30,6 +30,7 @@ const productSchema = new mongoose.Schema({
 	}]
 })
 
+
 productSchema.statics.like = function(id, userId) {
 	return this.findById(id)
 		.then(product => {

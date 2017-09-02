@@ -1,17 +1,3 @@
-/*import React, { Component } from 'react'
-
-class Root extends Component {
-	render() {
-		return (
-			<div className="root">
-				
-			</div>
-		)
-	}
-}
-
-export default Root*/
-
 import React, { Component } from 'react'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'

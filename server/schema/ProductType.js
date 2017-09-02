@@ -14,15 +14,15 @@ const ProductType = new GraphQLObjectType({
 		status: { type: GraphQLString },
 		restaurant: { 
 			type: RestaurantType,
-			resolve(parentValue) {
-				return Product.findById(parentValue.id)
+			resolve(_) {
+				return Product.findById(_.id)
 					.populate('restaurant').then(product => product.restaurant)
 			}
 		},
 		likes: {
 			type: GraphQLInt,
-			resolve(parentValue) {
-				return Product.findById(parentValue.id).then(product => (product.likes ? product.likes.length : 0))
+			resolve(_) {
+				return Product.findById(_.id).then(product => (product.likes ? product.likes.length : 0))
 			}
 		}
 	})

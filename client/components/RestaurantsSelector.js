@@ -16,9 +16,11 @@ class RestaurantsSelector extends Component {
 		active: null
 	}
 	handleRestaurantChange = (e) => {
+		const { restaurants } = this.props.data
+		if (!restaurants || !restaurants.length) return
 		const restaurant = e.target.value
 		const regExp = new RegExp(`^${restaurant}`,'i')
-		const filtered = this.props.data.restaurants.filter(item => {
+		const filtered = restaurants.filter(item => {
 			return regExp.test(item.name)
 		})
 		this.setState({
